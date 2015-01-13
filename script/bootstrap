@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+# Ensure local dependencies are available
+#
+# Usage: script/bootstrap
+
+set -o errexit
+
+# Check for Bundler
+if [ "$(gem query --installed --name-matches=bundler)" = 'false' ]
+then
+  echo 'Bundler not found. Installing ...'
+  gem install bundler --no-document
+fi
+
+# Check for missing gems
+if ! bundle check > /dev/null 2>&1
+then
+  echo 'Missing gems detected. Installing ...'
+  number_of_cores=$(sysctl -n hw.ncpu)
+  bundle install --jobs "$number_of_cores"
+fi
