@@ -1,0 +1,12 @@
+# Site settings
+title: Rust Berlin Community Pages
+email: ""
+description: ""
+baseurl: ""
+url: "http://rustberlin.github.io"
+twitter_username: rustberlin
+github_username:  rustberlin
+
+# Build settings
+markdown: kramdown
+exclude: [script, Gemfile, Gemfile.lock, README.md]
